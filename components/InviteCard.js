@@ -106,15 +106,6 @@ export default function InviteCard() {
           Homecoming
         </motion.p>
 
-        {guestName && (
-          <motion.p
-            variants={fadeUp}
-            className="mt-4 font-serif text-lg italic text-gilt-400 sm:text-xl"
-          >
-            Dear {guestName}
-          </motion.p>
-        )}
-
         <motion.p
           variants={fadeUp}
           className="mt-6 font-serif text-lg font-semibold text-ink-900 sm:text-xl"
@@ -127,6 +118,22 @@ export default function InviteCard() {
           className="mx-auto mt-3 max-w-xs text-fluid-body text-ink-800/70 sm:max-w-sm"
         >
           {hosts.request}
+        </motion.p>
+
+        {guestName && (
+          <motion.div variants={fadeUp} className="mt-6 flex flex-col items-center">
+            <p className="font-serif text-lg italic text-gilt-400 sm:text-xl">
+              {guestName}
+            </p>
+            <span className="mt-2 h-px w-32 bg-gilt-400/50 sm:w-40" />
+          </motion.div>
+        )}
+
+        <motion.p
+          variants={fadeUp}
+          className="mx-auto mt-6 max-w-xs text-fluid-body text-ink-800/70 sm:max-w-sm"
+        >
+          {hosts.occasion}
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-8 flex justify-center text-gilt-500">
