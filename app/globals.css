@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --blush-100: #6e0e1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--blush-100);
+  color: #2e2320;
+  font-family: var(--font-body), Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.flourish::before,
+.flourish::after {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+  vertical-align: middle;
+}
+.flourish::before {
+  margin-right: 0.75rem;
+}
+.flourish::after {
+  margin-left: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
