@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
 function SpeakerIcon() {
   return (
@@ -21,36 +21,22 @@ function MutedIcon() {
   );
 }
 
-// play() is exposed via ref so it can be called synchronously inside the
-// cover's own click handler — iOS Safari only allows audio to start as the
-// direct result of a tap, not a tick later via a state update + effect.
-//
-// Autoplay-with-sound is a browser policy, not something this code
-// controls: most browsers refuse it outright on a fresh visit and there is
-// no reliable way around that. We still try unmuted first — some browsers
-// (a returning visitor with enough "media engagement" on this site, some
-// embedded/PWA contexts) do allow it — and only fall back to muted
-// autoplay when the browser actually rejects the unmuted attempt.
-const MusicPlayer = forwardRef(function MusicPlayer(_props, ref) {
+// Nothing plays until the cover's "Tap to open" is clicked — that click
+// calls unmute() below, synchronously, inside its own handler. Audio can
+// only start with sound as the direct result of a real tap like that; it
+// is not started here on mount, and not started muted in the background.
+const MusicPlayer = forwardRef(function MusicPlayer({ visible = true }, ref) {
   const audioRef = useRef(null);
   const [muted, setMuted] = useState(false);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    audio.muted = false;
-    audio.play().catch(() => {
-      audio.muted = true;
-      setMuted(true);
-      audio.play().catch(() => {});
-    });
-  }, []);
-
   useImperativeHandle(ref, () => ({
-    play: () => {
+    // Called from the cover's own tap handler.
+    unmute: () => {
       const audio = audioRef.current;
       if (!audio) return;
+      audio.muted = false;
       audio.play().catch(() => {});
+      setMuted(false);
     },
   }));
 
@@ -66,16 +52,18 @@ const MusicPlayer = forwardRef(function MusicPlayer(_props, ref) {
   return (
     <>
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio ref={audioRef} src="/audio/background-music.m4a" loop preload="auto" autoPlay />
+      <audio ref={audioRef} src="/audio/background-music.m4a" loop preload="auto" />
 
-      <button
-        type="button"
-        onClick={toggleMute}
-        aria-label={muted ? "Unmute background music" : "Mute background music"}
-        className="fixed bottom-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-gilt-400/50 bg-blush-100/80 text-gilt-400 shadow-[0_6px_20px_-6px_rgba(10,3,5,0.7)] backdrop-blur-sm transition hover:border-gilt-400/80 hover:text-gilt-500"
-      >
-        {muted ? <MutedIcon /> : <SpeakerIcon />}
-      </button>
+      {visible && (
+        <button
+          type="button"
+          onClick={toggleMute}
+          aria-label={muted ? "Unmute background music" : "Mute background music"}
+          className="fixed bottom-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-gilt-400/50 bg-blush-100/80 text-gilt-400 shadow-[0_6px_20px_-6px_rgba(10,3,5,0.7)] backdrop-blur-sm transition hover:border-gilt-400/80 hover:text-gilt-500"
+        >
+          {muted ? <MutedIcon /> : <SpeakerIcon />}
+        </button>
+      )}
     </>
   );
 });

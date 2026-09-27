@@ -201,7 +201,7 @@ export default function InviteCard() {
         <CardCover
           opened={opened}
           onOpen={() => {
-            musicPlayerRef.current?.play();
+            musicPlayerRef.current?.unmute();
             setOpened(true);
           }}
           onAnimationComplete={() => opened && setCoverMounted(false)}
@@ -209,7 +209,7 @@ export default function InviteCard() {
       )}
       </div>
 
-      <MusicPlayer ref={musicPlayerRef} />
+      <MusicPlayer ref={musicPlayerRef} visible={opened} />
 
       <p className="pointer-events-none absolute bottom-2 left-1/2 z-50 w-full -translate-x-1/2 text-center text-[0.65rem] text-ink-800/40">
         Created by{" "}
