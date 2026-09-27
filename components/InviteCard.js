@@ -217,18 +217,6 @@ export default function InviteCard() {
       </div>
 
       <MusicPlayer ref={musicPlayerRef} visible={opened} />
-
-      <p className="pointer-events-none absolute bottom-2 left-1/2 z-50 w-full -translate-x-1/2 text-center text-[0.65rem] text-ink-800/40">
-        Created by{" "}
-        <a
-          href="https://www.instagram.com/venushkad/"
-          target="_blank"
-          rel="noreferrer"
-          className="pointer-events-auto underline decoration-dotted underline-offset-2 transition hover:text-gilt-400"
-        >
-          Venushka Dhambarage
-        </a>
-      </p>
     </main>
   );
 }
