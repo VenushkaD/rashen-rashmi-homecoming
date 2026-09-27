@@ -121,28 +121,28 @@ export default function InviteCard() {
         </motion.p>
 
         {guestName && (
-          <motion.div variants={fadeUp} className="mt-6 flex flex-col items-center">
+          <motion.div variants={fadeUp} className="mt-3 flex flex-col items-center">
             <p className="font-serif text-lg italic text-gilt-400 sm:text-xl">
               {guestName}
             </p>
-            <span className="mt-2 h-px w-32 bg-gilt-400/50 sm:w-40" />
+            <span className="mt-1.5 h-px w-32 bg-gilt-400/50 sm:w-40" />
           </motion.div>
         )}
 
         <motion.p
           variants={fadeUp}
-          className="mx-auto mt-6 max-w-xs text-fluid-body text-ink-800/70 sm:max-w-sm"
+          className="mx-auto mt-3 max-w-xs text-fluid-body text-ink-800/70 sm:max-w-sm"
         >
           {hosts.occasion}
         </motion.p>
 
-        <motion.div variants={fadeUp} className="mt-8 flex justify-center text-gilt-500">
+        <motion.div variants={fadeUp} className="mt-6 flex justify-center text-gilt-500">
           <FlowerDivider className="h-6 w-40 sm:w-52" />
         </motion.div>
 
         <motion.h1
           variants={fadeUp}
-          className="mt-6 font-serif text-fluid-name font-semibold text-ink-900"
+          className="mt-5 font-serif text-fluid-name font-semibold text-ink-900"
         >
           {groom.name}
         </motion.h1>
@@ -169,25 +169,25 @@ export default function InviteCard() {
 
         <motion.p
           variants={fadeUp}
-          className="mx-auto mt-8 max-w-xs text-fluid-body text-ink-800/70 sm:max-w-sm"
+          className="mx-auto mt-6 max-w-xs text-fluid-body text-ink-800/70 sm:max-w-sm"
         >
           Loving daughter of
           <br />
           <span className="italic">{bride.parents}</span>
         </motion.p>
 
-        <motion.div variants={fadeUp} className="mt-10 flex justify-center text-gilt-500">
+        <motion.div variants={fadeUp} className="mt-8 flex justify-center text-gilt-500">
           <FlowerDivider className="h-6 w-40 sm:w-52" />
         </motion.div>
 
-        <motion.div variants={fadeUp} className="mt-8 space-y-1">
+        <motion.div variants={fadeUp} className="mt-6 space-y-1">
           <p className="font-serif text-xl font-semibold text-ink-900 sm:text-2xl">
             {event.dateLabel}
           </p>
           <p className="text-fluid-body text-ink-800/70">{event.timeLabel}</p>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="mt-8">
+        <motion.div variants={fadeUp} className="mt-6">
           <p className="font-serif text-xl font-semibold text-gilt-400 sm:text-2xl">
             {event.venueName}
           </p>
@@ -197,7 +197,7 @@ export default function InviteCard() {
             href={mapsHref}
             target="_blank"
             rel="noreferrer"
-            className="mt-6 inline-block rounded-full border border-gilt-400/60 px-7 py-2.5 text-xs uppercase tracking-widest2 text-ink-900 transition hover:bg-ink-900 hover:text-blush-100"
+            className="mt-5 inline-block rounded-full border border-gilt-400/60 px-7 py-2.5 text-xs uppercase tracking-widest2 text-ink-900 transition hover:bg-ink-900 hover:text-blush-100"
           >
             Get Directions
           </a>
